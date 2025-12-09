@@ -6,5 +6,6 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "docling>=2.64.0",
+    "easyocr>=1.7.2",
     "pipdeptree>=2.30.0",
 ]

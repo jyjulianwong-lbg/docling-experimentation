@@ -6,6 +6,7 @@ from pathlib import Path
 from docling.datamodel.accelerator_options import AcceleratorDevice, AcceleratorOptions
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (
+    EasyOcrOptions,
     PdfPipelineOptions,
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
@@ -152,10 +153,12 @@ def main():
     # Custom pipeline
     # -------------------------------
     pipeline_options = PdfPipelineOptions()
-    pipeline_options.do_ocr = False
+    pipeline_options.do_ocr = True
     pipeline_options.do_table_structure = True
     pipeline_options.table_structure_options.do_cell_matching = True
-    # pipeline_options.ocr_options.lang = ["es"]
+    ocr_options = EasyOcrOptions(force_full_page_ocr=True)
+    pipeline_options.ocr_options = ocr_options
+    pipeline_options.ocr_options.lang = ["en"]
     pipeline_options.accelerator_options = AcceleratorOptions(
         num_threads=4, device=AcceleratorDevice.AUTO
     )
