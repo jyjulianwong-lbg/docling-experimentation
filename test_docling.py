@@ -11,7 +11,7 @@ from docling.datamodel.pipeline_options import (
 )
 from docling.document_converter import DocumentConverter, PdfFormatOption
 
-_log = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
 # Change this to a local path or another URL if desired.
@@ -159,6 +159,7 @@ def main():
     ocr_options = EasyOcrOptions(force_full_page_ocr=True)
     pipeline_options.ocr_options = ocr_options
     pipeline_options.ocr_options.lang = ["en"]
+    # pipeline_options.generate_page_images = True  # Include page images in HTML
     pipeline_options.accelerator_options = AcceleratorOptions(
         num_threads=4, device=AcceleratorDevice.AUTO
     )
@@ -172,10 +173,10 @@ def main():
     ###########################################################################
 
     start_time = time.time()
-    conv_result = doc_converter.convert(source)
+    conv_result = doc_converter.convert(source=source)
     end_time = time.time() - start_time
 
-    _log.info(f"Document converted in {end_time:.2f} seconds.")
+    _logger.info(f"Document converted in {end_time:.2f} seconds.")
 
     ## Export results
     output_dir = Path("scratch")
