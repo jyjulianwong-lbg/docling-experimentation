@@ -9,9 +9,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "docling>=2.64.0",
+    "docling[vlm]>=2.64.0",
     "easyocr>=1.7.2",
     "pipdeptree>=2.30.0",
+    "python-dotenv>=1.2.1",
 ]
 
 [dependency-groups]
